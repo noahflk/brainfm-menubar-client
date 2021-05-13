@@ -1,4 +1,4 @@
-const { app, globalShortcut, ipcMain, BrowserView } = require("electron");
+const { app, globalShortcut, ipcMain, BrowserView, systemPreferences } = require("electron");
 const { menubar } = require("menubar");
 const path = require("path");
 
@@ -16,7 +16,7 @@ const mb = menubar({
     height: 700,
   },
   showOnRightClick: true,
-  icon: "assets/IconTemplate.png",
+  icon: app.getAppPath() + "/assets/IconTemplate.png",
 });
 
 mb.on("ready", () => {
