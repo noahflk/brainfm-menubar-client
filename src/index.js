@@ -37,7 +37,7 @@ mb.on("ready", () => {
   });
 
   // Ask for accessibility permissions
-  // systemPreferences.isTrustedAccessibilityClient(true);
+  systemPreferences.isTrustedAccessibilityClient(true);
 
   // Application must be a trusted accessibility client
   globalShortcut.register("MediaNextTrack", skip);

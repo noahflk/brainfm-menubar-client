@@ -1,8 +1,8 @@
 {
   "name": "brainfm-menubar-client",
-  "productName": "brainfm-menubar-client",
+  "productName": "Brain.fm Client",
   "version": "1.0.0",
-  "description": "My Electron application description",
+  "description": "Unofficial menubar client for Brain.fm",
   "main": "src/index.js",
   "scripts": {
     "start": "electron-forge start",
