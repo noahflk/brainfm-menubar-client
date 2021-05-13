@@ -10,7 +10,7 @@ To build the production application on your own, run this command:
 yarn make
 ```
 
-## Development
+## Development
 
 ```bash
 # Install the dependencies
