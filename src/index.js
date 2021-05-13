@@ -1,4 +1,4 @@
-const { app, globalShortcut, systemPreferences } = require("electron");
+const { app, globalShortcut, ipcMain, BrowserView } = require("electron");
 const { menubar } = require("menubar");
 const path = require("path");
 
@@ -16,7 +16,7 @@ const mb = menubar({
     height: 700,
   },
   showOnRightClick: true,
-  icon: app.getAppPath() + "/assets/IconTemplate.png",
+  icon: "assets/IconTemplate.png",
 });
 
 mb.on("ready", () => {
@@ -26,6 +26,7 @@ mb.on("ready", () => {
   // mb.window.webContents.openDevTools();
 
   window.webContents.insertCSS("::-webkit-scrollbar { display: none; }");
+  window.webContents.insertCSS("html { margin-top: 40px !important; }");
 
   window.on("app-command", function (e, cmd) {
     if (cmd === "browser-backward" && window.webContents.canGoBack()) {
@@ -36,11 +37,27 @@ mb.on("ready", () => {
   });
 
   // Ask for accessibility permissions
-  systemPreferences.isTrustedAccessibilityClient(true);
+  // systemPreferences.isTrustedAccessibilityClient(true);
 
   // Application must be a trusted accessibility client
-  globalShortcut.register("CommandOrControl+X", skip);
+  globalShortcut.register("MediaNextTrack", skip);
   globalShortcut.register("MediaPlayPause", playPause);
+
+  const view = new BrowserView({
+    webPreferences: {
+      nodeIntegration: true,
+      contextIsolation: false,
+    },
+  });
+  window.setBrowserView(view);
+  view.setBounds({ x: 0, y: 0, height: 40, width: 600 });
+  view.setAutoResize({ width: true });
+  view.webContents.loadURL("file://" + path.join(__dirname, "index.html"));
+  // view.webContents.openDevTools();
+});
+
+ipcMain.on("quitapp", () => {
+  app.quit();
 });
 
 function skip() {
