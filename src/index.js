@@ -22,6 +22,9 @@ mb.on("ready", () => {
   const { window } = mb;
   console.log("Application is ready");
 
+  // Hide icon in macOS dock
+  app.dock.hide();
+
   // mb.window.webContents.openDevTools();
 
   // Add styling once and then on every reload
