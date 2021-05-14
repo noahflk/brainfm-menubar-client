@@ -11,6 +11,7 @@ body {
   height: 30px;
   width: 30px;
   cursor: pointer;
+  padding-bottom: 5px;
 }
 
 #icon-button {
