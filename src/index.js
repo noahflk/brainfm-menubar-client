@@ -63,13 +63,11 @@ ipcMain.on("quitapp", () => {
 function skip() {
   console.log("Skip track");
 
-  mainWindow.webContents.executeJavaScript('document.getElementsByClassName("Skip__skip___yeyZ-")[0].click()');
+  mb.window.webContents.executeJavaScript('document.getElementsByClassName("Skip__skip___yeyZ-")[0].click()');
 }
 
 function playPause() {
   console.log("Play/Pause");
 
-  mainWindow.webContents.executeJavaScript(
-    'document.getElementsByClassName("PlayControl__wrapper___341vD")[0].click()'
-  );
+  mb.window.webContents.executeJavaScript('document.getElementsByClassName("PlayControl__wrapper___341vD")[0].click()');
 }
