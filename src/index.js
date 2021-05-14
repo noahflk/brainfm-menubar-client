@@ -15,8 +15,7 @@ const mb = menubar({
     width: 600,
     height: 700,
   },
-  showOnRightClick: true,
-  icon: app.getAppPath() + "/assets/IconTemplate.png",
+  icon: path.join(__dirname, "../assets/IconTemplate.png"),
 });
 
 mb.on("ready", () => {
