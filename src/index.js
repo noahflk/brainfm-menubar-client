@@ -25,8 +25,12 @@ mb.on("ready", () => {
 
   // mb.window.webContents.openDevTools();
 
-  window.webContents.insertCSS("::-webkit-scrollbar { display: none; }");
-  window.webContents.insertCSS("html { margin-top: 40px !important; }");
+  // Add styling once and then on every reload
+  addStylingToWindow(window);
+
+  window.webContents.once("dom-ready", () => {
+    addStylingToWindow(window);
+  });
 
   window.on("app-command", function (e, cmd) {
     if (cmd === "browser-backward" && window.webContents.canGoBack()) {
@@ -70,4 +74,10 @@ function playPause() {
   console.log("Play/Pause");
 
   mb.window.webContents.executeJavaScript('document.getElementsByClassName("PlayControl__wrapper___341vD")[0].click()');
+}
+
+function addStylingToWindow(window) {
+  console.log("Adding custom CSS");
+  window.webContents.insertCSS("::-webkit-scrollbar { display: none; }");
+  window.webContents.insertCSS("html, #navBarApp { margin-top: 40px !important; }");
 }
